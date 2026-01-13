@@ -1,23 +1,27 @@
-import java.math.BigDecimal;
-import java.util.List;
-
 public class Magazine extends Item {
 
   private int Pages;
   private String Publisher;
 
   public Magazine(
-      String name,
-      BigDecimal price,
-      String description,
-      String code,
-      List<ProductPhoto> productPhotos,
-      int pages,
-      String publisher) {
+          String name,
+          float price,
+          String description,
+          String code,
+          ProductPhoto[] productPhotos,
+          int pages,
+          String publisher) {
     super(name, price, description, code, productPhotos);
     Pages = pages;
     Publisher = publisher;
   }
+
+  public Magazine(String name, float price, String description, String code, ProductPhoto[] productPhotos) {
+    super(name, price, description, code, productPhotos);
+    Pages = 0;
+    Publisher = "John Doe";
+  }
+
 
   public int getPages() {
     return Pages;

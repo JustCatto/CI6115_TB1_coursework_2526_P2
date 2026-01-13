@@ -1,20 +1,17 @@
-import java.math.BigDecimal;
-import java.util.List;
-
-public class Item {
+public abstract class Item {
 
   private String name;
-  private BigDecimal price;
+  private float price;
   private String description;
   private String code;
-  private final List<ProductPhoto> productPhotos;
+  private final ProductPhoto[] productPhotos;
 
   public Item(
-      String name,
-      BigDecimal price,
-      String description,
-      String code,
-      List<ProductPhoto> productPhotos) {
+          String name,
+          float price,
+          String description,
+          String code,
+          ProductPhoto[] productPhotos) {
     this.name = name;
     this.price = price;
     this.description = description;
@@ -22,7 +19,7 @@ public class Item {
     this.productPhotos = productPhotos;
   }
 
-  public List<ProductPhoto> getProductPhotos() {
+  public ProductPhoto[] getProductPhotos() {
     return productPhotos;
   }
 
@@ -42,11 +39,11 @@ public class Item {
     this.description = description;
   }
 
-  public BigDecimal getPrice() {
+  public float getPrice() {
     return price;
   }
 
-  public void setPrice(BigDecimal price) {
+  public void setPrice(float price) {
     this.price = price;
   }
 

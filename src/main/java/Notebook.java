@@ -1,22 +1,23 @@
-import java.math.BigDecimal;
-import java.util.List;
-
 public class Notebook extends Item {
 
   private String size;
   private int pages;
 
   public Notebook(
-      String name,
-      BigDecimal price,
-      String description,
-      String code,
-      List<ProductPhoto> productPhotos,
-      String size,
-      int pages) {
+          String name,
+          float price,
+          String description,
+          String code,
+          ProductPhoto[] productPhotos,
+          String size,
+          int pages) {
     super(name, price, description, code, productPhotos);
     this.size = size;
     this.pages = pages;
+  }
+
+  public Notebook(String name, float price, String description, String code, ProductPhoto[] productPhotos) {
+    super(name, price, description, code, productPhotos);
   }
 
   public String getSize() {

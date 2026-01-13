@@ -1,27 +1,30 @@
-import java.math.BigDecimal;
-import java.util.List;
-
 public class Book extends Item {
 
   private int Pages;
   private String publisher;
-  private List<String> authors;
+  private Person[] authors;
 
   public Book(
-      String name,
-      BigDecimal price,
-      String description,
-      String code,
-      List<ProductPhoto> productPhotos,
-      int pages,
-      String publisher,
-      List<String> authors) {
+          String name,
+          float price,
+          String description,
+          String code,
+          ProductPhoto[] productPhotos,
+          int pages,
+          String publisher,
+          Person[] authors) {
     super(name, price, description, code, productPhotos);
     Pages = pages;
     this.publisher = publisher;
     this.authors = authors;
-    if (authors.isEmpty()) {
+    if (authors.length == 0) {
       throw new IllegalArgumentException("Book must have at least 1 author.");
     }
   }
+
+  public Book(String name, float price, String description, String code, ProductPhoto[] productPhotos) {
+    super(name, price, description, code, productPhotos);
+    this.publisher = "Unknown";
+  }
+
 }

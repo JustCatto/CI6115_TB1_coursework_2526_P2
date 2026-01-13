@@ -9,6 +9,6 @@ public class Main {
     orderProcessor.addObserver(InventoryManagement.getInstance());
     orderProcessor.addObserver(OrderTracking.getInstance());
 
-    orderProcessor.notifyObservers();
+    orderProcessor.processOrder();
   }
 }
