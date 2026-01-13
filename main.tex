@@ -1,0 +1,200 @@
+%! Author = Romvulus Casunuran
+%! Date = 04/01/2026
+
+% Preamble
+\documentclass[11pt]{article}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\usepackage{float}
+\usepackage{array}
+
+
+\graphicspath{{./img/}}
+\addbibresource{CL6115_TB1_coursework_2526.bib}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+% Document
+\begin{document}
+  \section{Question 1:}\label{sec:question-1:}
+  \subsection{Book.java:}\label{subsec:book.java}
+  \lstinputlisting[language=Java,label={lst:book}]{src/main/java/Book.java}
+  \newpage
+  \subsection{Item.java:}\label{subsec:item.java}
+  \lstinputlisting[language=Java,label={lst:item}]{src/main/java/Item.java}
+  \newpage
+  \subsection{Magazine.java:}\label{subsec:magazine.java}
+  \lstinputlisting[language=Java,label={lst:magazine}]{src/main/java/Magazine.java}
+  \newpage
+  \subsection{Notebook.java:}\label{subsec:notebook.java}
+  \lstinputlisting[language=Java,label={lst:notebook}]{src/main/java/Notebook.java}
+  \newpage
+  \subsection{Person.java:}\label{subsec:person.java}
+  \lstinputlisting[language=Java,label={lst:person}]{src/main/java/Person.java}
+  \newpage
+  \subsection{ProductPhoto.java:}\label{subsec:productphoto.java}
+  \lstinputlisting[language=Java,label={lst:productphoto}]{src/main/java/ProductPhoto.java}
+  \section{Question 2:}\label{sec:question-2}
+  \includegraphics[width=\linewidth]{q2}
+  \section{Question 3:}\label{sec:question-3}
+  \subsection{a)}\label{subsec:3a)}
+  Provide the general UML Class diagram for the GoF Factory Method Pattern.
+  You can use an existing diagram from a source (e.g.\ teaching material,
+  wikipedia, book, etc), but clearly cite the source.
+  (0.5 mark)
+  \begin{figure}[ht]
+    \includegraphics[width=\linewidth]{gof_example}
+    \caption{An example of the GoF Factory Method Pattern \parencite{w3sdesignGoFDesignPatterns}}
+    \label{fig:gof_example}
+  \end{figure}
+  \subsection{b)}\label{subsec:3b)}
+  Apply the GoF Factory Method Pattern on the Class Diagram of Q1. The
+  purpose is to satisfy the requirement of creating different types of items
+  dynamically.
+  Show your solution as a UML Class Diagram that exemplifies the
+  UML general Class diagram you provided in Q3a on the system of Q1.
+  (2 marks)
+  \begin{figure}[ht]
+      \includegraphics[width=\linewidth]{q3}\label{fig:3b-diagram}
+  \end{figure}
+  \subsection{c)}\label{subsec:3c)}
+  Make clear the correspondence between the pattern concepts as shown in the
+  UML general Class diagram you provided in Q3a and the
+  interfaces/classes/methods/attributes of the system shown in Q1. 
+  (1.5 mark)\newline
+  See figure~\ref{fig:q3-code}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{M{0.5\textwidth}|M{0.5\textwidth}}
+      Part & Class Name \\ \hline
+      Creator (Creator) & ShapeFactory \\ \hline
+      Concrete Creator (Creator1) & \begin{itemize}
+                                      \item BoxFactory
+                                      \item TriangleFactory
+                                      \item CircleFactory
+      \end{itemize} \\ \hline
+      Product (Product) & Shape \\ \hline
+      Concrete Product (Product1) & \begin{itemize}
+                                       \item Box
+                                       \item Triangle
+                                       \item Circle
+      \end{itemize} \\
+    \end{tabular}
+    \label{tab:q3-mapping}
+  \end{table}
+
+  \section{Question 4:}\label{sec:question-4:}
+  \subsection{a)}\label{subsec:4a}
+  \begin{figure}[ht]
+    \includegraphics[width=\linewidth]{q4a}
+    \caption{A diagram of the GoF Observer Pattern \parencite{ObserverPattern2025}}
+    \label{fig:q4a}
+  \end{figure}
+
+  \subsection{b and c)}\label{subsec:4b-and-c}
+  \begin{figure}[H]
+    \includegraphics[width=\linewidth]{q4b}
+    \label{fig:q4b}
+  \end{figure}
+
+  \subsection{d}\label{subsec:4d}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{M{0.5\textwidth}|M{0.5\textwidth}}
+      Part & Class Name \\ \hline
+      Observer & Observer \\ \hline
+      ConcreteObserverA/B & \begin{itemize}
+                              \item EmailSystem
+                              \item InventoryManagement
+                              \item OrderTracking
+      \end{itemize}\\ \hline
+      Subject & Observable \\ \hline
+      ConcreteSubject & OrderSystem \\
+    \end{tabular}
+    \label{tab:q4-mapping}
+  \end{table}
+
+  \section{Question 5:}\label{sec:question-5}
+  \subsection{a)}\label{subsec:5a}
+  Provide background information about your project (e.g.\ topic, programming language, platform, etc) (1 mark).
+  \newline
+  The project is an implementation of Othello with a minimax AI in python, designed to run in a CLI\@.
+
+  \subsection{b}\label{subsec:5b}
+  Explain the problem (antipattern/code smell) in your project, using artefacts (code, architecture, management) that show your project before applying
+  refactoring (3 marks).
+  As seen in figure~\ref{subsec:figure-5-code}, this code has a couple of code smells.
+  \begin{itemize}
+    \item Excessive Comments
+    \item Primitive Obsession
+    \item Duplicate Code
+    \item Feature Envy
+    \item Long Method
+    \item Large Class
+    \item
+  \end{itemize}
+
+  \subsection{c}\label{subsec:5c}
+  Discuss the refactoring solution you applied and provide details on how it was applied to your project.
+  Include any artefacts (code, diagrams, processes) altered by the refactoring solution you applied (3 marks).
+
+  \section{Appendix}\label{sec:appendix}
+  \begin{enumerate}[label=\alph*)]
+    \item Software Tool used for drawing UML Diagrams: StarUML
+    \item {Did you use software to automate conversion of diagrams to code or code diagrams?
+    \begin{itemize}
+      \item {
+        YES, I USED software to automate conversions of diagrams to code and/or
+      code to diagrams
+      \begin{itemize}
+              \item if YES, complete software name here: StarUML Java Reverse Engineering
+      \end{itemize}
+      }
+    \end{itemize}
+    }
+    \item {Did you use Generative AI for this Submission? (delete as appropriate)
+    \begin{itemize}
+      \item NO, Generative AI was NOT USED for this submission.
+    \end{itemize}
+    }
+  \end{enumerate}
+
+  \subsection{Q3 Code}\label{subsec:q3-code}
+  \lstinputlisting[language=Java,label={lst:q3}]{src/main/java/CopyPasta.java}\label{fig:q3-code}
+
+  \subsection{Figure 5 code}\label{subsec:figure-5-code}
+  \subsubsection{Player}
+  \lstinputlisting[language=Python,label={lst:figure-5-player-py}]{python/src/player.py}
+  \subsubsection{Board}
+  \lstinputlisting[language=Python,label={lst:figure-5-Board-py}]{python/src/board.py}
+
+  \subsection{Figure 5 code refactored}\label{subsec:figure-5-code-refactored}
+
+  \printbibliography
+\end{document}
