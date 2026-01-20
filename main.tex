@@ -113,7 +113,7 @@
   \subsection{a)}\label{subsec:4a}
   \begin{figure}[ht]
     \includegraphics[width=\linewidth]{q4a}
-    \caption{A diagram of the GoF Observer Pattern \parencite{ObserverPattern2025}}
+    \caption{A diagram of the GoF Observer Pattern \parencite{wikipediaObserverPattern2025}}
     \label{fig:q4a}
   \end{figure}
 
@@ -153,16 +153,30 @@
   \begin{itemize}
     \item Excessive Comments
     \item Primitive Obsession
-    \item Duplicate Code
-    \item Feature Envy
     \item Long Method
-    \item Large Class
-    \item
+    \item Hardcoded values
   \end{itemize}
+
+  \subsubsection{Excessive comments}
+  Excessive comments explaining every line of code are scattered across the file.
+  This was necessary for my A-level, but in general comments should be reserved for functions/operations that are unclear.
+
+  \subsubsection{Primitive Obsession}
+  Strings are used to represent the pieces on the board in a 2D list.
+  This makes it difficult for comparisons, and requires hardcoded values to keep consistent across different modules.
+
+  \subsubsection{Long methods}
+ board.py@41 onwards, the placePiece function is quite long and can be broken into individual steps.
+
+  \subsubsection{Hardcoded values}
+  A constants file was used in the project to enforce consistency with comparisons such as checking piece color.
+
 
   \subsection{c}\label{subsec:5c}
   Discuss the refactoring solution you applied and provide details on how it was applied to your project.
   Include any artefacts (code, diagrams, processes) altered by the refactoring solution you applied (3 marks).
+
+
 
   \section{Appendix}\label{sec:appendix}
   \begin{enumerate}[label=\alph*)]
@@ -189,12 +203,20 @@
   \lstinputlisting[language=Java,label={lst:q3}]{src/main/java/CopyPasta.java}\label{fig:q3-code}
 
   \subsection{Figure 5 code}\label{subsec:figure-5-code}
-  \subsubsection{Player}
-  \lstinputlisting[language=Python,label={lst:figure-5-player-py}]{python/src/player.py}
   \subsubsection{Board}
   \lstinputlisting[language=Python,label={lst:figure-5-Board-py}]{python/src/board.py}
+  \subsubsection{Constants}
+  \lstinputlisting[language=Python,label={lst:figure-5-constants-py}]{python/src/constants.py}
+  \subsubsection{Global Functions}
+  \lstinputlisting[language=Python,label={lst:figure-5-global-py}]{python/src/globalfunctions.py}
 
   \subsection{Figure 5 code refactored}\label{subsec:figure-5-code-refactored}
+  \subsubsection{Board}
+  \lstinputlisting[language=Python, label={lst:figure-5-Refactored-Board-py}]{python/src/refactored/board.py}
+  \subsubsection{Coordinates}
+  \lstinputlisting[language=Python, label={lst:figure-5-Refactored-coordinates-py}]{python/src/refactored/coordinates.py}
+  \subsubsection{Piece}
+  \lstinputlisting[language=Python, label={lst:figure-5-Refactored-piece-py}]{python/src/refactored/piece.py}
 
   \printbibliography
 \end{document}
