@@ -1,0 +1,72 @@
+@startuml
+
+
+abstract class q3.Observable {
+~ Observer[] observers
+~ int size
+# void notifyObservers()
+- void expandObserverArr()
+~ void addObserver(Observer)
+~ void removeObserver(Observer)
+}
+
+
+abstract class q3.Observer {
+~ void update()
+}
+
+class q3.OrderProcessor {
+- {static} OrderProcessor instance
++ {static} OrderProcessor getInstance()
++ void processOrder()
+}
+
+
+class q3.EmailSystem {
+- {static} EmailSystem instance
++ {static} EmailSystem getInstance()
++ void update()
+}
+
+
+class q3.Main {
++ {static} void main(String[])
+}
+
+class q3.OrderTracking {
+- {static} OrderTracking instance
++ {static} OrderTracking getInstance()
++ void update()
+}
+
+
+class q3.InventoryManagement {
+- {static} InventoryManagement instance
++ {static} InventoryManagement getInstance()
++ void update()
+}
+
+note right of Main
+orderProcessor.addObserver(EmailSystem.getInstance());
+...
+orderProcessor.notifyObservers();
+end note
+
+note top of Observable
+notifyObservers() {
+    for observer in observers {
+        observer.update()
+    }
+}
+end note
+
+
+
+
+q3.Observable <|-- q3.OrderProcessor
+q3.Observer <|-- q3.EmailSystem
+q3.Observer <|-- q3.OrderTracking
+q3.Observer <|-- q3.InventoryManagement
+q3.Observer -* q3.Observable
+
+@enduml

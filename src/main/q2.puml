@@ -1,0 +1,40 @@
+@startuml
+class Shape {
+~ void draw()
+~ void numberOfSides()
+}
+
+class Circle {
+~ void draw()
+~ void numberOfSides()
+}
+
+class Box {
+~ void draw()
+~ void numberOfSides()
+}
+
+class Triangle {
+~ void draw()
+~ void numberOfSides()
+}
+
+class Overriding {
++ {static} void main(String[])
+}
+
+
+note right of Overriding
+
+end note
+
+
+
+Shape <|-- Circle
+Shape <|-- Box
+Shape <|-- Triangle
+
+Overriding ---> Circle
+Overriding ---> Box
+Overriding ---> Triangle
+@enduml

@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage[backend=biber,style=authoryear]{biblatex}
+\usepackage[a4paper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
 \usepackage{float}
 \usepackage{array}
 
@@ -20,6 +21,7 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
+\setcounter{secnumdepth}{0}
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 
 \lstset{frame=tb,
@@ -68,7 +70,7 @@
   You can use an existing diagram from a source (e.g.\ teaching material,
   wikipedia, book, etc), but clearly cite the source.
   (0.5 mark)
-  \begin{figure}[ht]
+  \begin{figure}[H]
     \includegraphics[width=\linewidth]{gof_example}
     \caption{An example of the GoF Factory Method Pattern \parencite{w3sdesignGoFDesignPatterns}}
     \label{fig:gof_example}
@@ -80,7 +82,7 @@
   Show your solution as a UML Class Diagram that exemplifies the
   UML general Class diagram you provided in Q3a on the system of Q1.
   (2 marks)
-  \begin{figure}[ht]
+  \begin{figure}[H]
       \includegraphics[width=\linewidth]{q3}\label{fig:3b-diagram}
   \end{figure}
   \subsection{c)}\label{subsec:3c)}
@@ -111,19 +113,19 @@
 
   \section{Question 4:}\label{sec:question-4:}
   \subsection{a)}\label{subsec:4a}
-  \begin{figure}[ht]
+  \begin{figure}[H]
     \includegraphics[width=\linewidth]{q4a}
     \caption{A diagram of the GoF Observer Pattern \parencite{wikipediaObserverPattern2025}}
     \label{fig:q4a}
   \end{figure}
 
-  \subsection{b and c)}\label{subsec:4b-and-c}
+  \subsection{4b and 4c)}\label{subsec:4b-and-c}
   \begin{figure}[H]
     \includegraphics[width=\linewidth]{q4b}
     \label{fig:q4b}
   \end{figure}
 
-  \subsection{d}\label{subsec:4d}
+  \subsection{4d}\label{subsec:4d}
   \begin{table}[H]
     \centering
     \begin{tabular}{M{0.5\textwidth}|M{0.5\textwidth}}
@@ -141,12 +143,13 @@
   \end{table}
 
   \section{Question 5:}\label{sec:question-5}
-  \subsection{a)}\label{subsec:5a}
+  \subsection{5a)}\label{subsec:5a}
   Provide background information about your project (e.g.\ topic, programming language, platform, etc) (1 mark).
   \newline
-  The project is an implementation of Othello with a minimax AI in python, designed to run in a CLI\@.
+  The project is an implementation of Othello with a minimax AI in python, designed to run in a CLI on any platform that could run python\@.
+  It utilizes a 2D array of strings to represent board state, and was created for my A-level final year project.
 
-  \subsection{b}\label{subsec:5b}
+  \subsection{5b}\label{subsec:5b}
   Explain the problem (antipattern/code smell) in your project, using artefacts (code, architecture, management) that show your project before applying
   refactoring (3 marks).
   As seen in figure~\ref{subsec:figure-5-code}, this code has a couple of code smells.
@@ -164,6 +167,7 @@
   \subsubsection{Primitive Obsession}
   Strings are used to represent the pieces on the board in a 2D list.
   This makes it difficult for comparisons, and requires hardcoded values to keep consistent across different modules.
+  The coordinates are also represented as a tuple of integers, which make it difficult to perform basic operations on without requiring multiple repeating lines of code, and the order of the x and y can be mixed up very easily.
 
   \subsubsection{Long methods}
  board.py@41 onwards, the placePiece function is quite long and can be broken into individual steps.
@@ -172,22 +176,43 @@
   A constants file was used in the project to enforce consistency with comparisons such as checking piece color.
 
 
-  \subsection{c}\label{subsec:5c}
+  \subsection{5c}\label{subsec:5c}
   Discuss the refactoring solution you applied and provide details on how it was applied to your project.
-  Include any artefacts (code, diagrams, processes) altered by the refactoring solution you applied (3 marks).
-
-
+  Include any artifacts (code, diagrams, processes) altered by the refactoring solution you applied (3 marks).
+  \newline\newline
+  The usage of primitives on the board made it quite difficult to mutate state, as each piece did not have an easy way to compare their states, relying on string comparison.
+  We change the board - Still a 2D array, however pieces are now represented by a dedicated piece class.
+  Their colour is represented by an enum, which has a method to return the opposite colour, which is used quite frequently when checking for opposing side pieces.
+  Each piece starts as blank, meaning when creating the board, we only need to instantiate the piece class and place it into the 2D array, instead of manually appending strings that represent blank into the board.
+  \newline
+  Coordinates throughout the code were changed to be its own class, storing X and Y, and also implementing addition logic to allow two coordinates to be added together easily.
+  These are closer to vectors rather than points in space, but for the sake of naming schemes we call them coordinates.
+  \newline
+  The piece placing process was broken down into three main steps:
+  \begin{itemize}
+      \item Check that the coordinates specified are valid (Validate input)
+      \item Find the pieces that will be affected by this move (Observe state)
+      \item Flip the pieces and place the new piece on the board (Update state)
+  \end{itemize}
+  For our first step, we created a function that takes coordinates and the colour to be placed, and returns boolean, representing if the move is valid or not.
+  When validating a move in othello, it must be within the board bounds, and it must flip at least one enemy piece.
+  Thus, this is broken down again into two functions which return boolean, one that takes coordinates and returns true if the piece is within bounds,and another which checks if the move affects at least one enemy piece.
+  For the second step, we reuse the function we created to check if our move affects enemy pieces in validation to retrieve a list of all the pieces we need to flip.
+  This step also had a lot of hardcoded values, which were replaced with loops and the state stored in the pieces.
+  The final step, we simply iterate over this list, and call .flipPiece on all of them to update their state.
+  A lot of the functions had error states that relied on the global functions to map error codes to error.
+  This was poorly implemented and handled, and thus was removed from this section of code.
 
   \section{Appendix}\label{sec:appendix}
   \begin{enumerate}[label=\alph*)]
-    \item Software Tool used for drawing UML Diagrams: StarUML
+    \item Software Tool used for drawing UML Diagrams: StarUML, PlantUML
     \item {Did you use software to automate conversion of diagrams to code or code diagrams?
     \begin{itemize}
       \item {
         YES, I USED software to automate conversions of diagrams to code and/or
       code to diagrams
       \begin{itemize}
-              \item if YES, complete software name here: StarUML Java Reverse Engineering
+              \item if YES, complete software name here: StarUML Java Reverse Engineering, IntelliJ Java to PlantUML
       \end{itemize}
       }
     \end{itemize}

@@ -54,7 +54,9 @@ class Board: # FIXME: Large class
         piece = self.get_piece(coordinate)
         if piece != Colour.BLANK:
             return
-        self.get_cascading_pieces(coordinate,colour)
+        pieces_to_flip = self.get_cascading_pieces(coordinate,colour)
+        for piece in pieces_to_flip:
+            piece.flip_piece()
 
     def get_cascading_pieces(self, coordinate: Coordinate, colour: Colour):
         cascading: List[Piece] = []
@@ -69,7 +71,7 @@ class Board: # FIXME: Large class
     def check_direction(self, colour:Colour, current_coordinate: Coordinate, offset: Coordinate, to_flip: List[Piece]):
         newCoordinate = current_coordinate + offset
         if not self.coordinate_is_in_bounds(newCoordinate):
-            return to_flip
+            return []
         piece = self.get_piece(newCoordinate)
         if piece.colour == colour.opposite():
             to_flip.append(piece)
