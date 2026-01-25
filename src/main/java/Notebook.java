@@ -8,7 +8,7 @@ public class Notebook extends Item {
           float price,
           String description,
           String code,
-          ProductPhoto[] productPhotos,
+          Photo[] productPhotos,
           String size,
           int pages) {
     super(name, price, description, code, productPhotos);
@@ -16,7 +16,7 @@ public class Notebook extends Item {
     this.pages = pages;
   }
 
-  public Notebook(String name, float price, String description, String code, ProductPhoto[] productPhotos) {
+  public Notebook(String name, float price, String description, String code, Photo[] productPhotos) {
     super(name, price, description, code, productPhotos);
   }
 

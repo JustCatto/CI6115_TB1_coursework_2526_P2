@@ -4,7 +4,7 @@ public interface Factory {
             float price,
             String description,
             String code,
-            ProductPhoto[] productPhotos
+            Photo[] productPhotos
     );
 }
 

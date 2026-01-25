@@ -1,9 +1,9 @@
-public class ProductPhoto {
+public class Photo {
     private final String fileLocation;
     private final int width;
     private final int height;
 
-    public ProductPhoto(String fileLocation, int width, int height) {
+    public Photo(String fileLocation, int width, int height) {
         this.fileLocation = fileLocation;
         this.width = width;
         this.height = height;

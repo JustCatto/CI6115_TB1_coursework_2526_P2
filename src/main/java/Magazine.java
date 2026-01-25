@@ -8,7 +8,7 @@ public class Magazine extends Item {
           float price,
           String description,
           String code,
-          ProductPhoto[] productPhotos,
+          Photo[] productPhotos,
           int pages,
           String publisher) {
     super(name, price, description, code, productPhotos);
@@ -16,7 +16,7 @@ public class Magazine extends Item {
     Publisher = publisher;
   }
 
-  public Magazine(String name, float price, String description, String code, ProductPhoto[] productPhotos) {
+  public Magazine(String name, float price, String description, String code, Photo[] productPhotos) {
     super(name, price, description, code, productPhotos);
     Pages = 0;
     Publisher = "John Doe";

@@ -9,7 +9,7 @@ public class Book extends Item {
           float price,
           String description,
           String code,
-          ProductPhoto[] productPhotos,
+          Photo[] productPhotos,
           int pages,
           String publisher,
           Person[] authors) {
@@ -22,7 +22,7 @@ public class Book extends Item {
     }
   }
 
-  public Book(String name, float price, String description, String code, ProductPhoto[] productPhotos) {
+  public Book(String name, float price, String description, String code, Photo[] productPhotos) {
     super(name, price, description, code, productPhotos);
     this.publisher = "Unknown";
   }

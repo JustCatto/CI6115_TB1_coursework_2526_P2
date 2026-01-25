@@ -4,14 +4,14 @@ public abstract class Item {
   private float price;
   private String description;
   private String code;
-  private final ProductPhoto[] productPhotos;
+  private final Photo[] productPhotos;
 
   public Item(
           String name,
           float price,
           String description,
           String code,
-          ProductPhoto[] productPhotos) {
+          Photo[] productPhotos) {
     this.name = name;
     this.price = price;
     this.description = description;
@@ -19,7 +19,7 @@ public abstract class Item {
     this.productPhotos = productPhotos;
   }
 
-  public ProductPhoto[] getProductPhotos() {
+  public Photo[] getProductPhotos() {
     return productPhotos;
   }
 
