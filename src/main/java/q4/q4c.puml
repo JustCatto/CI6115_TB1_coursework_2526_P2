@@ -1,0 +1,19 @@
+@startuml
+
+group Adding observers to obserable
+OrderTracking -> OrderProcessor : addObserver()
+EmailSystem -> OrderProcessor : addObserver()
+InventoryManagement -> OrderProcessor : addObserver()
+end
+
+group Notifying observers of state change
+OrderProcessor -> OrderProcessor : processOrder()
+
+OrderProcessor -> EmailSystem : update()
+OrderProcessor <- EmailSystem : view changes
+OrderProcessor -> InventoryManagement : update()
+OrderProcessor <- InventoryManagement : view changes
+OrderProcessor -> OrderTracking : update()
+OrderProcessor <- OrderTracking : view changes
+end
+@enduml

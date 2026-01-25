@@ -44,8 +44,20 @@ abstract class Observable {
   }
 }
 
-interface Observer {
-  void update();
+abstract class Observer {
+
+
+  private Observable observing;
+
+  Observable getObserving() {
+    return observing;
+  }
+
+  void setObserving(Observable observing) {
+    this.observing = observing;
+  }
+
+  abstract void update();
 }
 
 public class OrderProcessor extends Observable {

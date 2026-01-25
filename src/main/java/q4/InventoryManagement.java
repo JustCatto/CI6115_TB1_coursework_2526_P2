@@ -1,6 +1,6 @@
 package q4;
 
-public class InventoryManagement implements Observer {
+public class InventoryManagement extends Observer {
 
   private static InventoryManagement instance;
 

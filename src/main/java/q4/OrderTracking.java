@@ -1,6 +1,6 @@
 package q4;
 
-public class OrderTracking implements Observer {
+public class OrderTracking extends Observer {
 
   private static OrderTracking instance;
 

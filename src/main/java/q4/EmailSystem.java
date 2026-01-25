@@ -1,6 +1,6 @@
 package q4;
 
-public class EmailSystem implements Observer {
+public class EmailSystem extends Observer {
 
   private static EmailSystem instance;
 

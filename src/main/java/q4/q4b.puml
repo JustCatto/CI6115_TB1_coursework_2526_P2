@@ -12,6 +12,9 @@ abstract class q3.Observable {
 
 
 abstract class q3.Observer {
+- Observable observing
+~ Observable getObserving()
+~ void setObservable(Observable observing)
 ~ void update()
 }
 
